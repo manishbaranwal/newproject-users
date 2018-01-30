@@ -1,0 +1,38 @@
+<div class="container">
+    <div style="text-align:center">
+        <h1>Users list</h1>
+
+        <div class="search form-inline">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchStr">
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <form class="form-inline" autocomplete="off">
+                <input ngControl="user" type="text" required class="form-control mb-2 mr-sm-2 mb-sm-0"
+                       id="inlineFormInput" placeholder="Name" [(ngModel)]="user" name="user" (click)="removeAlert()"
+                       (blur)="showNoUserAlert()">
+
+                <button type="submit" class="btn btn-primary" (click)="addUser()" [disabled]="isUser()">Save</button>
+            </form>
+            <div class="text-center">
+                <div role="alert"
+                     style="margin: 20px 0 0;min-width: 256px;padding: 8px 35px 8px 15px;"
+                     [class]="('alert alert-dismissible ' + alert.type) + (alert.show?' alert-show ' : ' alert-hide')">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <span class="alert-message">{{alert.message}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let name of username | filter: searchStr">
+                    {{name}}
+                    <span class="glyphicon glyphicon-trash" (click)="removeUser(name)"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
