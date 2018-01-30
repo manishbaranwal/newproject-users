@@ -6,5 +6,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  user;
+  username;
+  userList: string[];
+
+ngOnInit(){
+  this.username = [];
 }
+addUser() {
+   this.username.push({
+   user: this.user
+  });
+  this.user = ' ';
+}
+
+removeUser(user){
+   this.username = this.username.splice(this.user,1);
+}
+
+}
+
